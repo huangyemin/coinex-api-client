@@ -17,6 +17,7 @@ public class Order extends BaseModel {
     private String dealPercent;
     private BigDecimal leftQuantity;
     private Integer status;
+    private long time;
 
     public Long getId() {
         return id;
@@ -112,5 +113,13 @@ public class Order extends BaseModel {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 }
