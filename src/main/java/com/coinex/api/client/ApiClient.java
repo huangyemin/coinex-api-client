@@ -63,6 +63,7 @@ public class ApiClient {
 
     /**
      * 查询当前系统时间戳
+     *
      * @return
      */
     public Long getSystemClock() {
@@ -71,6 +72,7 @@ public class ApiClient {
 
     /**
      * 获取交易对列表
+     *
      * @return
      */
     public List<CoinPair> getCoinPairs() {
@@ -192,6 +194,10 @@ public class ApiClient {
         invoke(apiService.cancelOrder(orderId));
     }
 
+    public void batchCancelOrder(List<Long> orderIds) {
+        invoke(apiService.batchCancelOrder(StringUtils.join(orderIds, ",")));
+    }
+
     public Long newOrder(String coinPair, OrderDirection direction, BigDecimal quantity, BigDecimal price) {
         return invoke(apiService.newOrder(coinPair, direction == null ? null : direction.ordinal(), quantity, price));
     }
@@ -225,6 +231,5 @@ public class ApiClient {
             throw new ApiException(e);
         }
     }
-
 
 }
