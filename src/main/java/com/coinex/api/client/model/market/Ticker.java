@@ -1,7 +1,9 @@
 package com.coinex.api.client.model.market;
 
 import com.coinex.api.client.model.BaseModel;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Ticker extends BaseModel {
     /**
      * 交易对
@@ -31,6 +33,12 @@ public class Ticker extends BaseModel {
      * 24小时交易总量
      */
     private String grossVolume;
+
+    private String bestBid;
+
+    private String bestAsk;
+
+    private long timestamp;
 
     public String getCoinPair() {
         return coinPair;
@@ -86,5 +94,29 @@ public class Ticker extends BaseModel {
 
     public void setGrossVolume(String grossVolume) {
         this.grossVolume = grossVolume;
+    }
+
+    public String getBestBid() {
+        return bestBid;
+    }
+
+    public void setBestBid(String bestBid) {
+        this.bestBid = bestBid;
+    }
+
+    public String getBestAsk() {
+        return bestAsk;
+    }
+
+    public void setBestAsk(String bestAsk) {
+        this.bestAsk = bestAsk;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
