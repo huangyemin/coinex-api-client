@@ -62,7 +62,7 @@ public interface ApiService {
     @Headers({ApiConstants.ACCESS_KEY_HEADER, ApiConstants.SIGNATURE_HEADER})
     Call<ApiResp<Void>> batchCancelOrder(@Query("ids") String ids);
 
-    @GET("api/v1/order/{id}")
+    @GET("api/v1/order/detail/{id}")
     @Headers({ApiConstants.ACCESS_KEY_HEADER, ApiConstants.SIGNATURE_HEADER})
     Call<ApiResp<Order>> getOrder(@Path("id") Long orderId);
 

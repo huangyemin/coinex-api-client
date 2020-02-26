@@ -22,6 +22,8 @@ import java.util.List;
 
 public class ApiClient {
 
+    private String baseUrl;
+
     /**
      * Access Key
      */
@@ -34,27 +36,33 @@ public class ApiClient {
 
     private ApiService apiService;
 
-    static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-    private static Retrofit.Builder builder =
-            new Retrofit.Builder()
-                    .baseUrl(ApiConstants.API_BASE_URL)
-                    .addConverterFactory(JacksonConverterFactory.create());
-
-    private static Retrofit retrofit = builder.build();
+    public ApiClient(String baseUrl) {
+        this(baseUrl, null, null);
+    }
 
     public ApiClient(String accessKey, String secretKey) {
+        this(ApiConstants.API_BASE_URL, accessKey, secretKey);
+    }
+
+    public ApiClient(String baseUrl, String accessKey, String secretKey) {
+        this.baseUrl = baseUrl;
         this.accessKey = accessKey;
         this.secretKey = secretKey;
         initApiService();
     }
 
     private void initApiService() {
+        Retrofit.Builder builder =
+                new Retrofit.Builder()
+                        .baseUrl(baseUrl)
+                        .addConverterFactory(JacksonConverterFactory.create());
+        Retrofit retrofit = builder.build();
         if (StringUtils.isNotEmpty(accessKey) && StringUtils.isNotEmpty(secretKey)) {
             AuthenticationInterceptor interceptor = new AuthenticationInterceptor(accessKey, secretKey);
-            if (!httpClient.interceptors().contains(interceptor)) {
-                httpClient.addInterceptor(interceptor);
-                builder.client(httpClient.build());
+            OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+            if (!httpClientBuilder.interceptors().contains(interceptor)) {
+                httpClientBuilder.addInterceptor(interceptor);
+                builder.client(httpClientBuilder.build());
                 retrofit = builder.build();
             }
         }
