@@ -54,6 +54,13 @@ public interface ApiService {
                                  @Query("quantity") BigDecimal quantity,
                                  @Query("price") BigDecimal price);
 
+    @POST("api/v1/order/robot/deal")
+    @Headers({ApiConstants.ACCESS_KEY_HEADER, ApiConstants.SIGNATURE_HEADER})
+    Call<ApiResp<Void>> selfDeal(@Query("coinPair") String coinPair,
+                                 @Query("direction") Integer direction,
+                                 @Query("quantity") BigDecimal quantity,
+                                 @Query("price") BigDecimal price);
+
     @POST("api/v1/order/cancel")
     @Headers({ApiConstants.ACCESS_KEY_HEADER, ApiConstants.SIGNATURE_HEADER})
     Call<ApiResp<Void>> cancelOrder(@Query("id") Long id);

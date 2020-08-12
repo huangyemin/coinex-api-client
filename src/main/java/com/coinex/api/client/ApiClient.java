@@ -210,6 +210,10 @@ public class ApiClient {
         return invoke(apiService.newOrder(coinPair, direction == null ? null : direction.ordinal(), quantity, price));
     }
 
+    public void selfDeal(String coinPair, OrderDirection direction, BigDecimal quantity, BigDecimal price) {
+        invoke(apiService.selfDeal(coinPair, direction == null ? null : direction.ordinal(), quantity, price));
+    }
+
     public Asset getAsset(String coin) {
         if (StringUtils.isEmpty(coin)) {
             throw new IllegalArgumentException();
