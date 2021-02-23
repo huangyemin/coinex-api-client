@@ -34,6 +34,8 @@ public class Ticker extends BaseModel {
      */
     private String grossVolume;
 
+    private String reference;
+
     private String bestBid;
 
     private String bestAsk;
@@ -94,6 +96,14 @@ public class Ticker extends BaseModel {
 
     public void setGrossVolume(String grossVolume) {
         this.grossVolume = grossVolume;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getBestBid() {
