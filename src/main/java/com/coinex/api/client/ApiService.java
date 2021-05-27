@@ -3,10 +3,7 @@ package com.coinex.api.client;
 import com.coinex.api.client.constant.ApiConstants;
 import com.coinex.api.client.model.account.Asset;
 import com.coinex.api.client.model.basic.CoinPair;
-import com.coinex.api.client.model.market.Candlestick;
-import com.coinex.api.client.model.market.Depth;
-import com.coinex.api.client.model.market.Ticker;
-import com.coinex.api.client.model.market.Trade;
+import com.coinex.api.client.model.market.*;
 import com.coinex.api.client.model.order.Order;
 import com.coinex.api.client.response.ApiResp;
 import retrofit2.Call;
@@ -91,11 +88,11 @@ public interface ApiService {
 
     @GET("api/v1/order/filled")
     @Headers({ApiConstants.ACCESS_KEY_HEADER, ApiConstants.SIGNATURE_HEADER})
-    Call<ApiResp<List<Trade>>> getFilledOrder(@Query("coinPair") String coinPair,
-                                              @Query("direction") Integer direction,
-                                              @Query("startTime") String startTime,
-                                              @Query("endTime") String endTime,
-                                              @Query("limit") Integer limit);
+    Call<ApiResp<List<UserTrade>>> getFilledOrder(@Query("coinPair") String coinPair,
+                                                  @Query("direction") Integer direction,
+                                                  @Query("startTime") String startTime,
+                                                  @Query("endTime") String endTime,
+                                                  @Query("limit") Integer limit);
 
     @GET("api/v1/account/assets")
     @Headers({ApiConstants.ACCESS_KEY_HEADER, ApiConstants.SIGNATURE_HEADER})

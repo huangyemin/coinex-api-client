@@ -169,32 +169,32 @@ public class ApiClient {
         return invoke(apiService.getLatestOrders(coinPair, direction == null ? null : direction.ordinal(), startTime, endTime, limit));
     }
 
-    public List<Trade> getFilledBuyOrders(String coinPair, Integer limit) {
+    public List<UserTrade> getFilledBuyOrders(String coinPair, Integer limit) {
         return getFilledBuyOrders(coinPair, null, null, limit);
     }
 
-    public List<Trade> getFilledBuyOrders(String coinPair, String startTime, String endTime) {
+    public List<UserTrade> getFilledBuyOrders(String coinPair, String startTime, String endTime) {
         return getFilledBuyOrders(coinPair, startTime, endTime, null);
     }
 
-    public List<Trade> getFilledBuyOrders(String coinPair, String startTime, String endTime, Integer limit) {
+    public List<UserTrade> getFilledBuyOrders(String coinPair, String startTime, String endTime, Integer limit) {
         return getFilledOrders(coinPair, OrderDirection.BUY, startTime, endTime, limit);
     }
 
-    public List<Trade> getFilledSellOrders(String coinPair, Integer limit) {
+    public List<UserTrade> getFilledSellOrders(String coinPair, Integer limit) {
         return getFilledSellOrders(coinPair, null, null, limit);
     }
 
-    public List<Trade> getFilledSellOrders(String coinPair, String startTime, String endTime) {
+    public List<UserTrade> getFilledSellOrders(String coinPair, String startTime, String endTime) {
         return getFilledSellOrders(coinPair, startTime, endTime, null);
     }
 
-    public List<Trade> getFilledSellOrders(String coinPair, String startTime, String endTime, Integer limit) {
+    public List<UserTrade> getFilledSellOrders(String coinPair, String startTime, String endTime, Integer limit) {
         return getFilledOrders(coinPair, OrderDirection.SELL, startTime, endTime, limit);
     }
 
 
-    public List<Trade> getFilledOrders(String coinPair, OrderDirection direction, String startTime, String endTime, Integer limit) {
+    public List<UserTrade> getFilledOrders(String coinPair, OrderDirection direction, String startTime, String endTime, Integer limit) {
         return invoke(apiService.getFilledOrder(coinPair, direction == null ? null : direction.ordinal(), startTime, endTime, limit));
     }
 
